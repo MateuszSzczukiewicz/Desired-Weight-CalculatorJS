@@ -9,8 +9,46 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="calc">
+    <h1 class="calc__header">Desired Weight calculator</h1>
+    <main class="calc__main">
+      <section class="calc__initial">
+        <label>
+          <h2 class="calc__title"></h2>
+          <input class="calc__input" id="calc-initial" type="range" value="80" min="30" max="130">
+          <span id="calc__initial-span">kg</span>
+        </label>
+      </section>
+      <section class="calc__desired">
+        <label>
+          <h2 class="calc__title"></h2>
+          <input class="calc__input" id="calc-desired" type="range" value="80" min="30" max="130">
+          <span id="calc__desired-span">kg</span>
+        </label>
+      </section>
+      <section class="calc__height">
+        <label>
+          <h2 class="calc__title"></h2>
+          <input class="calc__input" id="calc-height" type="range" value="170" min="120" max="220">
+          <span id="calc__height-span">kg</span>
+        </label>
+      </section>
+      <section class="calc__start">
+        <label>
+          <h2 class="calc__title"></h2>
+          <input class="calc__input" id="calc-start" type="date">
+        </label>
+      </section>
+      <section class="calc__end">
+        <label>
+          <h2 class="calc__title"></h2>
+          <input class="calc__input" id="calc-end" type="date">
+        </label>
+      </section>
+      <button class="calc__count" id="calc-count">Count</button>
+    </main>
+  </main>
 
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
