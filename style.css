@@ -11,9 +11,9 @@ body {
 
 .calc {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
 }
 
 .calc__header {
@@ -21,8 +21,13 @@ body {
     margin-bottom: 50px;
 }
 
-.calc__main {
+.calc__data {
+    display: flex;
+    align-items: center
+}
 
+.calc__value {
+    margin-left: 10px;
 }
 
 .calc__title {
@@ -31,16 +36,18 @@ body {
 }
 
 .calc__input {
-    font-family: Lato, sans-serif;
-    font-size: 16px;
-    width: 50vw;
+    width: 100%;
     height: 30px;
-    margin: 10px;
+    margin: 10px 0;
+    flex: 1;
 }
 
-
-.calc__section {
-
+.calc__input-date {
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    width: 500px;
+    height: 30px;
+    margin: 10px 0;
 }
 
 .calc__count {
@@ -48,7 +55,7 @@ body {
     color: #3B5249;
     font-size: 23px;
     border: 3px solid #3B5249;
-    width: 50vw;
+    width: 500px;
     height: 50px;
     cursor: pointer;
     transition: .1s;
@@ -63,4 +70,18 @@ body {
 .calc__article {
     margin-top: 20px;
     width: 50vw;
+}
+
+@media (max-width: 768px) {
+    .calc {
+        width: 320px;
+    }
+
+    .calc__input-date {
+        width: 320px;
+    }
+
+    .calc__count {
+        width: 320px;
+    }
 }
