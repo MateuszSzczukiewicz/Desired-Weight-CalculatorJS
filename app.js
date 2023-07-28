@@ -1,4 +1,3 @@
-// JavaScript
 class DesiredWeightCalculator {
     constructor() {
         this.calcInitial = document.getElementById('calc-initial');
