@@ -39,6 +39,35 @@ const heightSpanValue = () => {
     calcHeightSpan.textContent = `${value} cm`
 }
 
+const calculateBMI = (weight, height) => {
+        return (weight / Math.pow((height / 100), 2)).toFixed(1);
+};
+
+const getBMICategory = (bmi) => {
+    switch (true) {
+        case bmi < 18.5:
+            return 'Underweight';
+        case bmi < 25:
+            return 'Normal weight';
+        case bmi < 30:
+            return 'Overweight';
+        case bmi < 35:
+            return 'Obese Class I';
+        case bmi < 40:
+            return 'Obese Class II';
+        default:
+            return 'Obese Class III';
+    }
+};
+
+const countDays = () => {
+    const startDate = new Date(calcStart.value);
+    const endDate = new Date(calcEnd.value);
+    const timeDiff = endDate.getTime() - startDate.getTime();
+    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
+    return Math.round(daysDiff)
+}
+
 const countValue = () => {
     const initialWeight = parseFloat(calcInitial.value);
     const desiredWeight = parseFloat(calcDesired.value);
@@ -46,19 +75,23 @@ const countValue = () => {
 
     const fluctuate = initialWeight > desiredWeight ? 'lose' : 'gain';
     const goal = Math.abs(initialWeight - desiredWeight);
-    const currentBMI = (initialWeight / Math.pow((height / 100), 2)).toFixed(1);
-    const desiredBMI = (desiredWeight / Math.pow((height / 100), 2)).toFixed(1);
+    const currentBMI = calculateBMI(initialWeight, height);
+    const desiredBMI = calculateBMI(desiredWeight, height);
+    const initialCategories = getBMICategory(parseFloat(currentBMI));
+    const desiredCategories = getBMICategory(parseFloat(desiredBMI));
+    const changePerDay = (goal / countDays()).toFixed(2);
+    const changePerWeek = ((goal / countDays()) * 7).toFixed(2);
 
     if (calcInitial.value === calcDesired.value || calcStart.value === calcEnd.value) {
         calcArticle.textContent = 'Current and desired weight can\'t be equal, start and end date should be different'
     } else {
-        calcArticle.textContent = `
-            You want ${fluctuate} ${goal} kg
-            Your current BMI is ${currentBMI} (Overweight)
-            Your desired BMI is ${desiredBMI} (Moderately obese)
-            You should gain 0.80 kg per day
-            You should loose 8.00 kg per week
-        `
+        calcArticle.innerHTML = `
+            You want to <strong>${fluctuate}</strong> <strong>${goal} kg</strong>. <br>
+            Your current BMI is <strong>${currentBMI}</strong> (${initialCategories}). <br>
+            Your desired BMI is <strong>${desiredBMI}</strong> (${desiredCategories}). <br>
+            You should <strong>${fluctuate} ${changePerDay} kg</strong> per day. <br>
+            You should <strong>${fluctuate} ${changePerWeek} kg</strong> per week. <br>
+    `;
     }
 }
 
